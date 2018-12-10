@@ -4,6 +4,7 @@ import Mainframe from '@/components/Mainframe'
 import Basicinfo from '@/components/Basicinfo'
 import Mitama from '@/components/Mitama'
 import Biography from '@/components/Biography'
+import Videoplay from '@/components/Videoplay'
 Vue.use(Router)
 export default new Router({
 
@@ -27,6 +28,11 @@ export default new Router({
       path:'/Biography',
       name:'Biography',
       component:Biography
+    },
+    {
+      path:'/Videoplay',
+      name:'Videoplay',
+      component:Videoplay
     }
   ]
 })
