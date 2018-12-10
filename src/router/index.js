@@ -5,14 +5,20 @@ import Basicinfo from '@/components/Basicinfo'
 import Mitama from '@/components/Mitama'
 import Biography from '@/components/Biography'
 import Videoplay from '@/components/Videoplay'
+import Swiper from '@/components/Swiper'
 Vue.use(Router)
 export default new Router({
 
   routes: [
     {
-      path: '/',
+      path: '/Mainframe',
       name: 'Mainframe',
       component: Mainframe
+    },
+    {
+      path:'/',
+      name:'Swiper',
+      component:Swiper
     },
     {
       path:'/Basicinfo',
