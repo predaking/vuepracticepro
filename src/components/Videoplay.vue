@@ -174,7 +174,7 @@ video::-webkit-media-controls-enclosure {
                 <video :class="{ 'hide-cursor': !state.contrlShow }" class="__cov-video" :poster="options.poster">
                     <!-- <source v-for="source in sources" :src="source.src" :type="source.type">
                     </source> -->
-                    <source src="../video/Man.mp4" type="video/mp4"></source>
+                    <!-- <source src="../video/Man.mp4" type="video/mp4"></source> -->
                 </video>
                 <div class="__cov-contrl-content" transition="fade" v-show="state.contrlShow">
                     <button class="__cov-contrl-play-btn" @click="play">
@@ -281,7 +281,7 @@ const timeParse = (sec) => {
 export default {
     props: {
       sources: [{
-        src: '../video/Man.mp4',
+        // src: '../video/Man.mp4',
         type: 'video/mp4'
       }],
       options: {
