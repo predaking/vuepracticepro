@@ -1,5 +1,15 @@
 <template>
-<div>
+  <!-- 上下左右3*3轮播 -->
+  <div style="display:flex" @swipedown="getDirection()">
+    <ul style="list-style:none" v-for="(rlist,rIndex) in rowSideList" :key="rIndex">
+      <li v-for="(clist,cIndex) in rlist.columnSideList" :key="cIndex" @click="getIndex(cIndex)">
+        {{clist.name}}
+      </li>
+    </ul>
+  </div>
+
+<!-- 旋转地球 -->
+<!--<div>
   <div class="demo-carousel" id="swiper1">
     <div class="world">
       <div class="world-bg">
@@ -16,7 +26,10 @@
     </div>
   </div>
 </div>
-<!-- <Carousel class="carousel" v-model="value1" loop trigger="hover">
+-->
+
+<!-- iview 横向轮播实例（不支持手滑）-->
+<!--<Carousel class="carousel" v-model="value1" loop trigger="hover">
   <CarouselItem>
     <div class="demo-carousel" id="swiper1">
       <div class="world">
@@ -40,7 +53,8 @@
   <CarouselItem>
     <div class="demo-carousel" id="swiper4">4</div>
   </CarouselItem>
-</Carousel> -->
+</Carousel>
+-->
 </template>
 <script>
 import earth from '../js/earth';
@@ -48,15 +62,75 @@ export default {
   name: "Swiper",
   data() {
     return {
-      value1: 0
+      value1: 0,
+      rowSideList:[{
+        columnSideList:[{
+          name:"1-1",
+          cstyle:{
+            backgroundColor:"red",
+          }
+        },{
+          name:"1-2",
+          cstyle:{
+            backgroundColor:"green",
+          }
+        },{
+          name:"1-3",
+          cstyle:{
+            backgroundColor:"blue",
+          }
+        }]
+      },{
+        columnSideList:[{
+          name:"2-1",
+          cstyle:{
+            backgroundColor:"red",
+          }
+        },{
+          name:"2-2",
+          cstyle:{
+            backgroundColor:"green",
+          }
+        },{
+          name:"2-3",
+          cstyle:{
+            backgroundColor:"blue",
+          }
+        }]
+      },{
+        columnSideList:[{
+          name:"3-1",
+          cstyle:{
+            backgroundColor:"red",
+          }
+        },{
+          name:"3-2",
+          cstyle:{
+            backgroundColor:"green",
+          }
+        },{
+          name:"3-3",
+          cstyle:{
+            backgroundColor:"blue",
+          }
+        }]
+      }],
+
     }
   },
   mounted() {
-    this.loadEarth();
+
+    // this.loadEarth();
   },
   methods: {
     loadEarth() {
       earth.earthModel();
+    },
+    getIndex(index){
+      console.log(index);
+    },
+    getDirection(){
+      console.log("下滑了");
     }
   }
 }
@@ -75,6 +149,7 @@ export default {
   right: 10%;
   left: 10%;
   bottom: 30px;
+  color:white;
   font-size: 35px !important;
   animation: desctf 10s;
   -webkit-animation: desctf 10s;

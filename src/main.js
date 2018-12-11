@@ -5,6 +5,7 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import iView from 'iview' // 引入iview依赖
+// import vueTouch from './js/gesture.js'
 import 'iview/dist/styles/iview.css' // 引入iview css样式
 import BreadCrumb from '@/commoncomponents/BreadCrumb'
 import LeftSider from '@/commoncomponents/LeftSider'
@@ -21,3 +22,4 @@ new Vue({
   components: { App },
   template: '<App/>'
 })
+// Vue.use(vueTouch)
