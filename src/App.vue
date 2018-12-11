@@ -47,10 +47,12 @@ export default {
 } */
 .layout{
   border: 1px solid #d7dde4;
-  background: #f5f7f9;
+  background: #192735;
   position: relative;
   border-radius: 4px;
   overflow: hidden;
+  height:-webkit-fill-available;
+  -webkit-height:-webkit-fill-available;
 }
 .layout-div{
   height:-webkit-fill-available;

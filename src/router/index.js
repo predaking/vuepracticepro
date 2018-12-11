@@ -6,6 +6,7 @@ import Mitama from '@/components/Mitama'
 import Biography from '@/components/Biography'
 import Videoplay from '@/components/Videoplay'
 import Swiper from '@/components/Swiper'
+import Navigation from '@/components/Navigation'
 Vue.use(Router)
 export default new Router({
 
@@ -39,6 +40,11 @@ export default new Router({
       path:'/Videoplay',
       name:'Videoplay',
       component:Videoplay
+    },
+    {
+      path:'/Navigation',
+      name:'Navigation',
+      component:Navigation
     }
   ]
 })
