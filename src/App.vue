@@ -39,24 +39,20 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 0px;
 }
 
 /* a{
   color:unset !important;
 } */
 .layout{
-  border: 1px solid #d7dde4;
-  background: #192735;
+  background: #192027;
   position: relative;
-  border-radius: 4px;
   overflow: hidden;
-  height:-webkit-fill-available;
+  height: auto;
   -webkit-height:-webkit-fill-available;
 }
-.layout-div{
-  height:-webkit-fill-available;
-}
+
 .layout-logo {
   width: 50px;
   height: 50px;
@@ -79,21 +75,6 @@ export default {
   /* left: 20px; */
 }
 
-.layout-nav {
-  width: 420px;
-  margin: 0 auto;
-  margin-right: 50px;
-}
 
-.head-img {
-  height: inherit;
-  width: inherit;
-  border-radius: 25px;
-}
-
-.logo-img {
-  height: inherit;
-  width: inherit;
-}
 
 </style>

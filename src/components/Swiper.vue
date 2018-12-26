@@ -9,7 +9,7 @@
   </div>
 
 <!-- 旋转地球 -->
-<!--<div>
+<!-- <div>
   <div class="demo-carousel" id="swiper1">
     <div class="world">
       <div class="world-bg">
@@ -25,8 +25,8 @@
       </p>
     </div>
   </div>
-</div>
--->
+</div> -->
+
 
 <!-- iview 横向轮播实例（不支持手滑）-->
 <!--<Carousel class="carousel" v-model="value1" loop trigger="hover">

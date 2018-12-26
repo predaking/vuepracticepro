@@ -368,7 +368,6 @@ var earth = {
     }
 
     init();
-    console.log("11111111111");
   }
 }
 export default earth;

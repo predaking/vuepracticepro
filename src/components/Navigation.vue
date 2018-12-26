@@ -1,26 +1,44 @@
 <template>
-  <div @click="timeout5()">
-    <main class='container' v-show="isShow" ref='navinfo'>
-      <div class='wrap'>
+  <div class="mainnav">
+    <!-- @click="timeout5()" class='connav' -->
+    <main class='container' v-show="isShow">
+      <div>
+      <div class='wrap' ref='navinfo'>
         <input type='checkbox' id='checking' style='display:none;' />
-        <button class='blob' @click="jump('/')">&#x2605;</button>
-        <button class='blob' ref='nav'>&#x2709;</button>
+        <button class='blob' :style="blobb" @click="jump('/Bird')"></button>
+        <button class='blob' ref='nav' style="display: none">&#x2709;</button>
         <transition name="fade">
-          <button class='blob'>&#x2699;</button>
+          <button class='blob' style="display: none">&#x2699;</button>
         </transition>
-        <button class='blob'>&#x2764;</button>
-        <button class='blob'>&#x270C;</button>
-        <button class='blob'>&#x270E;</button>
-        <button class='blob'>&#x266B;</button>
-        <button class='blob'>&#x2706;</button>
+        <button class='blob' :style="blobh" @click="jump('/Cartton')"></button>
+        <button class='blob' :style="blobs" @click="jump('/Sheep')"></button>
+        <button class='blob' :style="blobe" @click="jump('/Elephant')"></button>
+        <button class='blob' style="display: none">&#x266B;</button>
+        <button class='blob' :style="blobd" @click="jump('/Dolphin')"></button>
         <label class='blob' for='checking' id="label-blob">
+        <!-- <label class='bloblist' id="label-blob"> -->
           <span class='bar'></span>      
           <span class='bar'></span>
           <span class='bar'></span>
         </label>
+        <audio ref='muplay' id="musicplay" loop="loop" ><source src="../music/bgm.mp3" type="audio/mpeg"></audio>
+        <label class='blobmusic'>
+          <!-- <Icon ref='micon' @typechange="typechange" type="ios-musical-notes" class='barmusic' @click="musicctrl()"/> -->
+          <img :src="imgsrc" class="barmusic" @click="musicctrl()"/>
+        </label>
+        <label class='blobmusic2'>
+          <!-- <Icon ref='micon' @typechange="typechange" type="ios-musical-notes" class='barmusic' @click="musicctrl()"/> -->
+          <img :src="imgsrc2" class="barmusic" @click="jump('/AboutUs')"/>
+        </label>
+        <label class='blobvideo'>
+          <!-- <Icon ref='micon' @typechange="typechange" type="ios-musical-notes" class='barmusic' @click="musicctrl()"/> -->
+          <img :src="imgsrc3" class="barvideo" @click="jump('/VideoList')"/>
+        </label>
+        <img :src="logo" class="mlogo" @click="jump('/Mainpage')"/>
       </div>  
+    </div>
     </main>
-    <svg>
+    <svg class="svgs">
       <symbol>
         <defs>
           <filter id="filt">
@@ -36,11 +54,37 @@
 
 <script>
 export default {
-  name: 'Mainframe',
+  name: 'Navigation',
   data() {
     return {
       msg: "当前时间：" + new Date().toLocaleString(),
-      isShow:false
+      isShow:true,
+      isPlay:false,
+      imgsrc:require("../assets/Navigation/musicclose.png"),
+      imgsrc2:require("../assets/Navigation/abs.png"),
+      imgsrc3:require("../assets/Navigation/视频2.png"),
+      logo:require("../assets/logo.png"),
+      blobs: {
+        backgroundImage: 'url(' + require('../assets/Navigation/Sheep.png') + ')',
+        backgroundSize: '100% 100%'
+      },
+      blobb: {
+        backgroundImage: 'url(' + require('../assets/Navigation/Bird.png') + ')',
+        backgroundSize: '100% 100%'
+      },
+      blobe: {
+        backgroundImage: 'url(' + require('../assets/Navigation/Elephant.png') + ')',
+        backgroundSize: '100% 100%'
+      },
+      blobh: {
+        backgroundImage: 'url(' + require('../assets/Navigation/Cartton.png') + ')',
+        backgroundSize: '100% 100%'
+      },
+      blobd: {
+        backgroundImage: 'url(' + require('../assets/Navigation/Dolphin.png') + ')',
+        backgroundSize: '100% 100%'
+      }
+      //imgsrc:require("../assets/earth.jpg")
     }
   },
   methods: {
@@ -56,25 +100,50 @@ export default {
       setTimeout(() =>{this.isShow=false},5000);
       //var t=setTimeout("this.hide();",1000);
       //var t=setTimeout("this.isShow=false;",1000);
+    },
+    musicctrl() {
+      var audio = document.getElementById('musicplay');
+      console.log(this.$refs.muplay.src);
+      if(this.isPlay){
+        this.imgsrc=require("../assets/Navigation/musicclose.png");
+        audio.pause();
+        audio.currentTime=0;
+      }
+      else
+      {
+        this.imgsrc=require("../assets/Navigation/musicopen.png");
+        audio.play();
+      }
+      this.isPlay=!this.isPlay;
     }
-  },
-  mounted(){
-    let _this=this;
-    document.addEventListener('click',function(e){
-      if(!!_this.$refs.navinfo.contains(e.target)) return;
-      _this.isShow=true;
-      setTimeout(() =>{_this.isShow=false},5000);
-      //_this.isShow=false;
-    })
   }
+  // },
+  // mounted(){
+  //   let _this=this;
+  //   document.addEventListener('click',function(e){
+  //     if(_this.$refs.navinfo.contains(e.target)) return;
+  //     _this.isShow=true;
+  //     setTimeout(() =>{_this.isShow=false;},5000);
+  //     //_this.isShow=false;
+  //   })
+  // }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.mainnav {
+  position: absolute;
+  width: 32px;
+  height: 360px;
+}
 .content {
   text-align: center;
   padding-top: 100px !important;
+}
+.connav {
+  height:360px;
+  width:640px;
 }
 .bar {
 
@@ -85,6 +154,7 @@ export default {
   height: 3px;
   /*margin: 5px auto;*/
   margin:1px auto;
+  margin-left: 6px;
   background-color: #fff;
   border-radius: 2px;
   transition: all 0.4s linear 0.1s;
@@ -94,17 +164,17 @@ export default {
   -ms-transition: all 0.4s linear 0.1s;
 }
 .bar:first-child {
-  margin-top: 10px;
+  margin-top: 7px;
   /*margin-top: 27px;*/
 }
 
 .wrap {
   position: absolute;
-  top: 20px;
-  left: 20px;
-  margin: auto;
-  width: 150px;
-  height: 100px;
+  top: 10px;
+  left: 5px;
+  margin-left: -1px;
+  width: 10px;
+  height: 360px;
   filter: url("#filt");
   -webkit-filter: url("#filt");
 }
@@ -118,12 +188,12 @@ export default {
   height: 80px;
   border-radius: 50%;
   z-index: 10;
-  background-color: #1a787d;
-  box-shadow: 0 0 10px 1px rgba(255, 255, 255, 0.3) inset;
-  -webkit-box-shadow: 0 0 10px 1px rgba(255, 255, 255, 0.3) inset;
-  -moz-box-shadow: 0 0 10px 1px rgba(255, 255, 255, 0.3) inset;
-  -o-box-shadow: 0 0 10px 1px rgba(255, 255, 255, 0.3) inset;
-  -ms-box-shadow: 0 0 10px 1px rgba(255, 255, 255, 0.3) inset;
+  background-color: #3b5556;
+  /*box-shadow: 0 0 10px 1px rgba(255, 255, 255, 0.3) inset;*/
+  /*-webkit-box-shadow: 0 0 10px 1px rgba(255, 255, 255, 0.3) inset;*/
+  /*-moz-box-shadow: 0 0 10px 1px rgba(255, 255, 255, 0.3) inset;*/
+  /*-o-box-shadow: 0 0 10px 1px rgba(255, 255, 255, 0.3) inset;*/
+  /*-ms-box-shadow: 0 0 10px 1px rgba(255, 255, 255, 0.3) inset;*/
 }
 .blob{
   font-size: 10px !important;
@@ -140,10 +210,10 @@ export default {
   -ms-transition: transform 0.5s ease-in-out 0.2s;
 }
 .wrap .blob:not([for="checking"]) {
-  width: 20px;
-  height: 20px;
-  top:3px;
-  left:3px;
+  width: 10px;
+  height: 10px;
+  top:91px;
+  left:4px;
 
 /*  top: 15px;
   left: 15px;*/
@@ -163,75 +233,75 @@ export default {
   -ms-animation: harlem 0.5s linear forwards;
 }
 .wrap > #checking:checked ~ .blob:nth-child(2) {
-  width:50px;
-  height:50px;
-  font-size: 30px !important;
+  width:35px;
+  height:35px;
+  font-size: 28px !important;
 
-  margin-left: 85px;
-  margin-top: 10px;
+  margin-left: 52px;
+  margin-top: -17px;
   background-color: #fff;
 }
 .wrap > #checking:checked ~ .blob:nth-child(3) {
-  width:50px;
-  height:50px;
-  font-size: 30px !important;
+  width:35px;
+  height:35px;
+  font-size: 28px !important;
 
   margin-top: 145px;
-  margin-left: 65px;
+  margin-left: 66px;
   background-color: #fff;
 }
 .wrap > #checking:checked ~ .blob:nth-child(4) {
-  width:50px;
-  height:50px;
-  font-size: 30px !important;
+  width:35px;
+  height:35px;
+  font-size: 28px !important;
 
   margin-top: 160px;
   margin-left: 10px;
   background-color: #fff;
 }
 .wrap > #checking:checked ~ .blob:nth-child(5) {
-  width:50px;
-  height:50px;
-  font-size: 30px !important;
+  width:35px;
+  height:35px;
+  font-size: 28px !important;
 
-  margin-top: 85px;
-  margin-left: 10px;
+  margin-top: 8px;
+  margin-left: 22px;
   background-color: #fff;
 }
 .wrap > #checking:checked ~ .blob:nth-child(6) {
-  width:50px;
-  height:50px;
-  font-size: 30px !important;
+  width:35px;
+  height:35px;
+  font-size: 28px !important;
 
-  margin-top: 63px;
-  margin-left: 63px;
+  margin-top: 39px;
+  margin-left: 50px;
   background-color: #fff;
 }
 .wrap > #checking:checked ~ .blob:nth-child(7) {
-  width:50px;
-  height:50px;
-  font-size: 30px !important;
+  width:35px;
+  height:35px;
+  font-size: 28px !important;
 
-  margin-top: 65px;
-  margin-left: 145px;
+  margin-top: 54px;
+  margin-left: 88px;
   background-color: #fff;
 }
 .wrap > #checking:checked ~ .blob:nth-child(8) {
-  width:50px;
-  height:50px;
-  font-size: 30px !important;
+  width:35px;
+  height:35px;
+  font-size: 28px !important;
 
   margin-top: 112px;
   margin-left: 112px;
   background-color: #fff;
 }
 .wrap > #checking:checked ~ .blob:nth-child(9) {
-  width:50px;
-  height:50px;
-  font-size: 30px !important;
+  width:35px;
+  height:35px;
+  font-size: 28px !important;
 
-  margin-top: 10px;
-  margin-left: 160px;
+  margin-top: -33px;
+  margin-left: 89px;
   background-color: #fff;
 }
 .wrap > #checking:checked ~ .blob[for="checking"] > .bar:nth-child(1) {
@@ -240,7 +310,8 @@ export default {
   -moz-transform: rotate(45deg);
   -o-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
-  margin-top: 14px;
+  margin-top: 11px;
+  margin-left: 6px;
 }
 .wrap > #checking:checked ~ .blob[for="checking"] > .bar:nth-child(2) {
   transform: rotate(-45deg);
@@ -257,8 +328,9 @@ export default {
   display: none;
 }*/
 #label-blob{
-  height:30px;
-  width:30px;
+  height:25px;
+  width:25px;
+  top:88px;
 }
 @keyframes harlem {
   0% {
@@ -357,5 +429,81 @@ export default {
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
+}
+
+.blobmusic {
+  display: block;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #3b5556;
+  top:252px;
+}
+.blobmusic2 {
+  display: block;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #3b5556;
+  top:286px;
+}
+.blobvideo {
+  display: block;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #3b5556;
+  top:123px;
+}
+
+.barmusic {
+  font-size:27px;
+  position:absolute;
+  width:17.7px;
+  height:18.7px;
+  left:3px;
+  top:1px;
+  color:#fff;
+}
+.barvideo {
+  font-size:27px;
+  position:absolute;
+  width:17.7px;
+  height:18.7px;
+  left:4px;
+  top:3px;
+  color:#fff;
+}
+
+.mlogo {
+  height: 34px;
+  width: 40px;
+  margin-left: -8px;
+}
+
+.svgs {
+  width:10px;
+  height:10px;
+}
+.baranimal {
+  font-size:27px;
+  position:absolute;
+  width:17.7px;
+  height:18.7px;
+  left:3px;
+  top:1px;
+  color:#fff;
 }
 </style>
